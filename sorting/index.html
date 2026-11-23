@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Checkbox 필터 갤러리 (5x4 20선)</title>
+  <link rel="stylesheet" href="./style.css">
+  <!-- 프리텐다드 폰트 적용 (CDN) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+<body>
+
+  <div class="container">
+    <!-- 헤더 영역 -->
+    <header class="header">
+      <h1 class="title">Pure CSS Filter Gallery</h1>
+      <p class="subtitle">자바스크립트 없이 <strong>체크박스(Checkbox)</strong>와 <strong>순수 CSS</strong>로만 작동하는 필터링 시스템 (5 &times; 4 총 20개)</p>
+    </header>
+
+    <!-- 
+      [핵심 구조]
+      체크박스 input 태그들이 필터 버튼(label) 및 갤러리(.gallery-grid)와 같은 부모 내에서 
+      형제(Sibling)로 위치하여 CSS 형제 결합자(~)로 하위 요소를 제어할 수 있게 구성합니다.
+    -->
+    <input type="checkbox" id="filter-nature" class="filter-input" checked>
+    <input type="checkbox" id="filter-arch" class="filter-input" checked>
+    <input type="checkbox" id="filter-animal" class="filter-input" checked>
+
+    <!-- 필터 컨트롤 바 (버튼) -->
+    <div class="filter-bar">
+      <span class="filter-title">카테고리 필터:</span>
+      <div class="filter-buttons">
+        <label for="filter-nature" class="filter-btn btn-nature">
+          <span class="icon">🌿</span>
+          <span class="name">자연 (Nature)</span>
+          <span class="count">7</span>
+        </label>
+        <label for="filter-arch" class="filter-btn btn-arch">
+          <span class="icon">🏛️</span>
+          <span class="name">건축 (Architecture)</span>
+          <span class="count">7</span>
+        </label>
+        <label for="filter-animal" class="filter-btn btn-animal">
+          <span class="icon">🐾</span>
+          <span class="name">동물 (Animals)</span>
+          <span class="count">6</span>
+        </label>
+      </div>
+      <p class="filter-hint">* 버튼을 클릭해 다중 선택 또는 해제할 수 있습니다.</p>
+    </div>
+
+    <!-- 5열 x 4행 총 20개 카드 그리드 -->
+    <main class="gallery-grid">
+
+      <!-- ================= 1. 자연 (Nature) - 7개 ================= -->
+      <article class="card nature">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&h=450&q=80" alt="안개 낀 산과 숲" loading="lazy">
+          <span class="badge badge-nature">자연</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">안개 덮인 고요한 산맥</h2>
+          <p class="card-desc">신비로운 아침 안개로 물든 웅장한 침엽수림과 푸른 산세입니다.</p>
+        </div>
+      </article>
+
+      <article class="card nature">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=600&h=450&q=80" alt="깊은 계곡과 녹음" loading="lazy">
+          <span class="badge badge-nature">자연</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">에메랄드빛 깊은 계곡</h2>
+          <p class="card-desc">울창한 절벽 사이로 맑고 깨끗한 물이 흐르는 국립공원의 정경입니다.</p>
+        </div>
+      </article>
+
+      <article class="card nature">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=600&h=450&q=80" alt="황금빛 들판과 석양" loading="lazy">
+          <span class="badge badge-nature">자연</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">노을 지는 황금빛 언덕</h2>
+          <p class="card-desc">저물어가는 햇살을 품고 따스하게 일렁이는 가을 초원입니다.</p>
+        </div>
+      </article>
+
+      <article class="card nature">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&h=450&q=80" alt="햇살 비치는 숲속 길" loading="lazy">
+          <span class="badge badge-nature">자연</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">빛의 숲길</h2>
+          <p class="card-desc">나뭇가지 사이로 영롱하게 부서져 내리는 신록의 숲속 산책로입니다.</p>
+        </div>
+      </article>
+
+      <article class="card nature">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=450&q=80" alt="청량한 여름 해변" loading="lazy">
+          <span class="badge badge-nature">자연</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">코발트빛 열대 해변</h2>
+          <p class="card-desc">하얀 백사장과 시원하게 부서지는 파도가 어우러진 휴양지 바다입니다.</p>
+        </div>
+      </article>
+
+      <article class="card nature">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&h=450&q=80" alt="소나무 숲과 안개" loading="lazy">
+          <span class="badge badge-nature">자연</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">서정적인 솔숲</h2>
+          <p class="card-desc">피톤치드 향이 은은하게 퍼지는 이른 새벽 몽환적인 솔숲의 모습입니다.</p>
+        </div>
+      </article>
+
+      <article class="card nature">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&h=450&q=80" alt="만년설 빙하 봉우리" loading="lazy">
+          <span class="badge badge-nature">자연</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">만년설 고봉</h2>
+          <p class="card-desc">구름 위로 우뚝 솟은 설산의 경이로운 위용과 순백의 설경입니다.</p>
+        </div>
+      </article>
+
+      <!-- ================= 2. 건축 (Architecture) - 7개 ================= -->
+      <article class="card arch">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&h=450&q=80" alt="모던한 건축 공간" loading="lazy">
+          <span class="badge badge-arch">건축</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">미니멀 건축 파사드</h2>
+          <p class="card-desc">간결한 직선미와 기하학적 형태가 돋보이는 모던 스타일 건축물입니다.</p>
+        </div>
+      </article>
+
+      <article class="card arch">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&h=450&q=80" alt="빌딩숲 마천루" loading="lazy">
+          <span class="badge badge-arch">건축</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">도시의 마천루</h2>
+          <p class="card-desc">하늘을 찌를 듯 솟아오른 유리 커튼월 빌딩들의 감각적인 시선입니다.</p>
+        </div>
+      </article>
+
+      <article class="card arch">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=600&h=450&q=80" alt="유럽풍 클래식 건축" loading="lazy">
+          <span class="badge badge-arch">건축</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">고전 유럽 양식 대성당</h2>
+          <p class="card-desc">정교한 석조 조각과 아치 구조물이 빚어낸 역사적인 랜드마크입니다.</p>
+        </div>
+      </article>
+
+      <article class="card arch">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?auto=format&fit=crop&w=600&h=450&q=80" alt="나선형 계단" loading="lazy">
+          <span class="badge badge-arch">건축</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">조형미의 나선형 계단</h2>
+          <p class="card-desc">빛과 그림자가 유려한 곡선을 따라 흐르는 예술적인 실내 구조입니다.</p>
+        </div>
+      </article>
+
+      <article class="card arch">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=600&h=450&q=80" alt="거대한 현수교 다리" loading="lazy">
+          <span class="badge badge-arch">건축</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">현수교와 야경</h2>
+          <p class="card-desc">해협을 가로지르는 웅장한 철골 케이블 구조와 도시의 불빛입니다.</p>
+        </div>
+      </article>
+
+      <article class="card arch">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=600&h=450&q=80" alt="화이트 모던 하우스" loading="lazy">
+          <span class="badge badge-arch">건축</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">화이트 큐브 갤러리</h2>
+          <p class="card-desc">빛의 반사를 극대화한 순백의 외벽과 절제된 창문 배치가 매력적입니다.</p>
+        </div>
+      </article>
+
+      <article class="card arch">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&h=450&q=80" alt="감각적인 실내 인테리어" loading="lazy">
+          <span class="badge badge-arch">건축</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">오픈형 로프트 스튜디오</h2>
+          <p class="card-desc">높은 천장과 통창으로 들어오는 자연광을 활용한 인더스트리얼 공간입니다.</p>
+        </div>
+      </article>
+
+      <!-- ================= 3. 동물 (Animals) - 6개 ================= -->
+      <article class="card animal">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=600&h=450&q=80" alt="붉은 여우" loading="lazy">
+          <span class="badge badge-animal">동물</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">야생 붉은 여우</h2>
+          <p class="card-desc">호기심 가득한 눈망울과 풍성하고 부드러운 꼬리를 지닌 여우입니다.</p>
+        </div>
+      </article>
+
+      <article class="card animal">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?auto=format&fit=crop&w=600&h=450&q=80" alt="용맹한 호랑이" loading="lazy">
+          <span class="badge badge-animal">동물</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">백두산 호랑이</h2>
+          <p class="card-desc">강인한 눈빛과 위엄 넘치는 줄무늬를 자랑하는 밀림의 제왕입니다.</p>
+        </div>
+      </article>
+
+      <article class="card animal">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=600&h=450&q=80" alt="초원의 사자" loading="lazy">
+          <span class="badge badge-animal">동물</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">사바나의 수사자</h2>
+          <p class="card-desc">황금빛 갈기를 흩날리며 드넓은 평원을 묵직하게 응시하고 있습니다.</p>
+        </div>
+      </article>
+
+      <article class="card animal">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=600&h=450&q=80" alt="귀여운 반려견" loading="lazy">
+          <span class="badge badge-animal">동물</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">명랑한 골든 리트리버</h2>
+          <p class="card-desc">주인을 향해 해맑은 미소를 짓고 있는 사람 친화적인 반려견입니다.</p>
+        </div>
+      </article>
+
+      <article class="card animal">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&h=450&q=80" alt="호기심 많은 고양이" loading="lazy">
+          <span class="badge badge-animal">동물</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">초록 눈빛의 치즈 냥이</h2>
+          <p class="card-desc">조용히 햇살을 즐기며 카메라를 빤히 바라보는 사랑스러운 고양이입니다.</p>
+        </div>
+      </article>
+
+      <article class="card animal">
+        <div class="card-thumb">
+          <img src="https://images.unsplash.com/photo-1555169062-013468b47731?auto=format&fit=crop&w=600&h=450&q=80" alt="화려한 앵무새" loading="lazy">
+          <span class="badge badge-animal">동물</span>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">오색찬란한 금강앵무</h2>
+          <p class="card-desc">열대의 싱그러운 색채를 고스란히 담고 있는 화려한 깃털의 조류입니다.</p>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- 빈 상태 (모든 필터를 껐을 때) -->
+    <div class="empty-state">
+      <p class="empty-icon">🔍</p>
+      <p class="empty-text">선택된 카테고리가 없습니다.<br>상단의 필터 버튼을 클릭해 원하는 항목을 선택해주세요!</p>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+      <p>웹퍼블리싱 실습 과제 &copy; Pure CSS Multi-Filter Component</p>
+    </footer>
+  </div>
+
+</body>
+</html>

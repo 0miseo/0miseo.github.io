@@ -1,0 +1,470 @@
+/* ==========================================================================
+   CSS Filter Gallery Style (Pure CSS with Checkbox Hack)
+   ========================================================================== */
+
+/* 1. Reset & Global Variables */
+:root {
+  --color-bg: #f8fafc;
+  --color-card-bg: #ffffff;
+  --color-text-main: #0f172a;
+  --color-text-sub: #64748b;
+  --color-border: #e2e8f0;
+
+  /* 테마 컬러 (3가지 필터 카테고리) */
+  --nature-primary: #10b981;
+  --nature-hover: #059669;
+  --nature-light: #ecfdf5;
+
+  --arch-primary: #3b82f6;
+  --arch-hover: #2563eb;
+  --arch-light: #eff6ff;
+
+  --animal-primary: #f59e0b;
+  --animal-hover: #d97706;
+  --animal-light: #fffbeb;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-pill: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 12px 24px -4px rgba(15, 23, 42, 0.12), 0 4px 8px -2px rgba(15, 23, 42, 0.06);
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.5;
+  padding: 40px 20px 80px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   2. Header Area
+   ========================================================================== */
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.header .title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.header .subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-sub);
+  word-break: keep-all;
+}
+
+.header .subtitle strong {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   3. Checkbox Hack & Filter Buttons
+   ========================================================================== */
+
+/* 실제 체크박스 숨김 처리 (웹 접근성 및 UI 전환용) */
+.filter-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+/* 필터 컨트롤 바 */
+.filter-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.filter-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* 필터 버튼 (label) 기본 스타일 - 꺼져 있을 때 (Unchecked 상태) */
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #f1f5f9;
+  color: #64748b;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.filter-btn .icon {
+  font-size: 1.1rem;
+  transition: transform var(--transition-fast);
+}
+
+.filter-btn .count {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: #e2e8f0;
+  color: #475569;
+  font-weight: 700;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background-color: #e2e8f0;
+  color: #334155;
+  transform: translateY(-2px);
+}
+
+.filter-btn:active {
+  transform: translateY(0);
+}
+
+/* 
+   [핵심 CSS 체크박스 선택자]
+   input:checked 형제 결합자로 해당 label 버튼의 활성화(Active) 스타일 지정
+*/
+
+/* 1) 자연(Nature) 필터 활성화 */
+#filter-nature:checked ~ .filter-bar .btn-nature {
+  background-color: var(--nature-primary);
+  color: #ffffff;
+  border-color: var(--nature-primary);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+#filter-nature:checked ~ .filter-bar .btn-nature .count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+#filter-nature:checked ~ .filter-bar .btn-nature:hover {
+  background-color: var(--nature-hover);
+  border-color: var(--nature-hover);
+}
+
+/* 2) 건축(Architecture) 필터 활성화 */
+#filter-arch:checked ~ .filter-bar .btn-arch {
+  background-color: var(--arch-primary);
+  color: #ffffff;
+  border-color: var(--arch-primary);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+}
+#filter-arch:checked ~ .filter-bar .btn-arch .count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+#filter-arch:checked ~ .filter-bar .btn-arch:hover {
+  background-color: var(--arch-hover);
+  border-color: var(--arch-hover);
+}
+
+/* 3) 동물(Animals) 필터 활성화 */
+#filter-animal:checked ~ .filter-bar .btn-animal {
+  background-color: var(--animal-primary);
+  color: #ffffff;
+  border-color: var(--animal-primary);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+#filter-animal:checked ~ .filter-bar .btn-animal .count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+#filter-animal:checked ~ .filter-bar .btn-animal:hover {
+  background-color: var(--animal-hover);
+  border-color: var(--animal-hover);
+}
+
+.filter-hint {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   4. Gallery Grid (5 x 4 = 20개 레이아웃)
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  /* 데스크톱 기본: 5열 그리드 */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+
+/* 카드 기본 스타일 */
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 썸네일 영역 */
+.card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-thumb img {
+  transform: scale(1.08);
+}
+
+/* 카테고리 뱃지 */
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.badge-nature {
+  background-color: rgba(16, 185, 129, 0.9);
+  color: #ffffff;
+}
+
+.badge-arch {
+  background-color: rgba(59, 130, 246, 0.9);
+  color: #ffffff;
+}
+
+.badge-animal {
+  background-color: rgba(245, 158, 11, 0.9);
+  color: #ffffff;
+}
+
+/* 카드 본문 */
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   5. [핵심 필터링 로직] Pure CSS Checkbox Filtering
+   ========================================================================== */
+
+/* 
+   해당 체크박스가 체크 해제(:not(:checked))되면
+   갤러리 내의 해당 카테고리 카드(.card.[category])를 display: none 으로 숨깁니다.
+   -> 다중 선택(OR 필터링)이 완벽하게 구현됩니다!
+*/
+
+#filter-nature:not(:checked) ~ .gallery-grid .card.nature {
+  display: none;
+}
+
+#filter-arch:not(:checked) ~ .gallery-grid .card.arch {
+  display: none;
+}
+
+#filter-animal:not(:checked) ~ .gallery-grid .card.animal {
+  display: none;
+}
+
+/* ==========================================================================
+   6. 빈 상태 (모든 필터가 꺼졌을 때)
+   ========================================================================== */
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 2px dashed #cbd5e1;
+  margin-top: 20px;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.empty-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* 3개 필터가 모두 체크 해제되었을 때 empty-state 노출 */
+#filter-nature:not(:checked) ~ #filter-arch:not(:checked) ~ #filter-animal:not(:checked) ~ .empty-state {
+  display: flex;
+}
+
+/* ==========================================================================
+   7. 애니메이션 (Fade In)
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   8. 푸터 영역
+   ========================================================================== */
+.footer {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  border-top: 1px solid var(--color-border);
+  padding-top: 24px;
+}
+
+/* ==========================================================================
+   9. 반응형 미디어 쿼리 (Responsive Grid)
+   ========================================================================== */
+/* 와이드 데스크톱: 5열 (5 x 4) */
+@media (min-width: 1280px) {
+  .gallery-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* 일반 랩탑/데스크톱: 4열 */
+@media (max-width: 1279px) and (min-width: 992px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 태블릿: 3열 */
+@media (max-width: 991px) and (min-width: 680px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .header .title {
+    font-size: 1.8rem;
+  }
+}
+
+/* 모바일 가로 / 작은 태블릿: 2열 */
+@media (max-width: 679px) and (min-width: 440px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .card-body {
+    padding: 12px;
+  }
+  .card-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* 모바일 세로: 1열 */
+@media (max-width: 439px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .filter-buttons {
+    width: 100%;
+  }
+  .filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
